@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "level_cells.h"
-#include "utils.h"
 
 
 t_d_cell *createCell(int value, int nblvl) {
