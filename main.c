@@ -13,7 +13,7 @@ int main() {
     FILE *log_file = fopen("log.txt", "w"); 
     char format[] = "%d\t%s\t%s\n" ;
     char *time_lvl0;
-    char *time_all_levels; 
+    char *time_all_levels;
     for (nblvl = 7; nblvl < 15; nblvl++) {
         printf("Timer for level %d\n", nblvl);
         mylist = createEmptyList(nblvl);
@@ -38,7 +38,9 @@ int main() {
         fprintf(log_file,format,nblvl,time_lvl0, time_all_levels);
         displayTime();
         printf("\n");
-        fclose(log_file);
+        free(time_lvl0);
+        free(time_all_levels);
     }
+    fclose(log_file);
     return 0;
 }
