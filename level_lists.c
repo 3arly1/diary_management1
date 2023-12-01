@@ -49,7 +49,6 @@ void insertCellInList(t_d_list *mylist) {
     for (int i = 0; i < mylist->nb_level-1; i++) {
         nb = nb*2;
     }
-    nb -= 1;
     int levels[nb];
     for (int i = 0; i < nb; i++) {
         levels[i] = 0;
@@ -62,20 +61,17 @@ void insertCellInList(t_d_list *mylist) {
         }
         a = a*2;
     }
-    for (int i = 0; i < nb; i++) {
-        t_d_cell *tmp;
-        cell = createCell(i+1, mylist->nb_level);
+    t_d_cell *tmp;
+    for (int i = nb; i+1 > 0; i--) {
+        cell = createCell(i, mylist->nb_level);
         for (int j = 0; j < mylist->nb_level; j++) {
             tmp = mylist->head[j];
             if (mylist->head[j] == NULL && levels[i] >= j) {
                 mylist->head[j] = cell;
             }
             else if (levels[i] >= j && mylist->head[j] != NULL) {
-                while (tmp->next[j] != NULL && cell->value > tmp->next[j]->value) {
-                    tmp = tmp->next[j];
-                }
-                cell->next[j] = tmp->next[j];
-                tmp->next[j] = cell;
+                cell->next[j] = mylist->head[j];
+                mylist->head[j] = cell;
             }   
         }
     }

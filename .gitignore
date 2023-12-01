@@ -2,3 +2,4 @@ a.out
 log.txt
 .vscode
 a.out.dSYM
+.DS_Store
